@@ -1,8 +1,8 @@
 {
     "name": "task-easy",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "A simple, customizable, and lightweight priority queue for promise based tasks.",
-    "main": "./micro-queue/index.js",
+    "main": "./src/index.js",
     "scripts": {
         "test":
             "npm run lint && jest && npm run test:coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
