@@ -5,7 +5,7 @@
  * @param {Function} compare_func - Function to handle comparison objects passed to Scheduler
  * @param {Number} [max_queue_size=100] Max number of tasks allowed in queue
  */
-class Micro {
+class MicroQueue {
     constructor(compare_func, max_queue_size = 100) {
         this.tasks = [];
         this.taskRunning = false;
@@ -139,4 +139,4 @@ class Micro {
     }
 }
 
-module.exports = Micro;
+module.exports = MicroQueue;

@@ -1,11 +1,11 @@
-const Micro = require("./index");
+const MicroQueue = require("./index");
 
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 describe("Micro Worker", () => {
     describe("New Instance", () => {
         it("Rejects Improper Constructor Arguments", () => {
-            const fn = (arg, max) => () => new Micro(arg, max);
+            const fn = (arg, max) => () => new MicroQueue(arg, max);
 
             expect(fn()).toThrow();
             expect(fn("hello", 6)).toThrow();
@@ -36,7 +36,7 @@ describe("Micro Worker", () => {
                 });
             }
 
-            q = new Micro(compare);
+            q = new MicroQueue(compare);
             q.tasks = arr;
         });
 
@@ -60,7 +60,7 @@ describe("Micro Worker", () => {
                         }, ms);
                 });
 
-            const q = new Micro(compare);
+            const q = new MicroQueue(compare);
             const p1 = q.schedule(delayReturn, [50], { value: 1 });
             const p2 = q.schedule(delayReturn, [60], { value: 1 });
             const p3 = q.schedule(delayReturn, [70], { value: 1 });
@@ -80,7 +80,7 @@ describe("Micro Worker", () => {
                         }, ms);
                 });
 
-            const q = new Micro(compare);
+            const q = new MicroQueue(compare);
             const res = [];
             const p1 = q.schedule(delayReturn, [100], { value: 1, id: 1 }).then(n => res.push(n));
             const p2 = q.schedule(delayReturn, [110], { value: 1, id: 2 }).then(n => res.push(n));
@@ -109,18 +109,11 @@ describe("Micro Worker", () => {
                 if (obj1.value === obj2.value) return obj1.id < obj2.id;
                 return obj1.value >= obj2.value;
             };
-
-            for (let i = 0; i < 15; i++) {
-                arr.push({ task: delay, args: [100 * i], priority_obj: { value: i } });
-            }
-
-            q = new Micro(compare);
-            q.tasks = arr;
         });
 
         describe("Scheduler", () => {
             it("It Rejects Bad Args", () => {
-                const q = new Micro(compare);
+                const q = new MicroQueue(compare);
                 const fn = (func, args, obj) => () => {
                     q.schedule(func, args, obj);
                 };
@@ -133,7 +126,7 @@ describe("Micro Worker", () => {
             });
 
             it("Throws if too many tasks queued", () => {
-                const q = new Micro(compare, 10);
+                const q = new MicroQueue(compare, 10);
 
                 const fn = () => {
                     for (let i = 0; i < 15; i++) {

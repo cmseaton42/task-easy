@@ -2,7 +2,7 @@
     "name": "micro-queue",
     "version": "0.1.0",
     "description": "A lightwieght promise-based priority task/job queue.",
-    "main": "./micro/index.js",
+    "main": "./micro-queue/index.js",
     "scripts": {
         "test":
             "npm run lint && jest && npm run test:coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
