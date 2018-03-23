@@ -50,7 +50,7 @@ In this example, we will be passing priority objects to the scheduler that will 
 Now, let's create a function that will receive our priority objects and output a priority judgment so that _TaskEasy_ knows how to handle queued tasks. Our function will be passed two arguments (the priority objects of two scheduled tasks) and return a judgement indicating which task is of _higher_ priority. If we return `true`, then we are communicating to _TaskEasy_ that the first task is higher priority than the second task or vice versa
 
 ```js
-// This function is passed to the TaskEasy contructor and will be used internally to determine tasks priority.
+// This function is passed to the TaskEasy contructor and will be used internally to determine tasks order.
 const prioritize = (obj1, obj2) => {
     return ob1.priority === obj2.priority
         ? obj1.timestamp.getTime() < obj2.timestamp.getTime() // Return true if task 1 is older than task 2
@@ -64,7 +64,7 @@ Now, we can initialize a new _TaskEasy_ instance.
 const TaskEasy = require("task-easy");
 
 const max_tasks = 200; // How many tasks will we allow to be queued at a time (defaults to 100)
-const queue = TaskEasy(prioritize, max_tasks);
+const queue = new TaskEasy(prioritize, max_tasks);
 ```
 
 Now, lets build an async function to demo the scheduler.
@@ -75,8 +75,7 @@ const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 > **NOTE**
 >
-> Scheduled tasks _MUST_ be functions that return *promises*. This works well with async functions or with ES2017 `ASYNC/AWAIT` functions.
-
+> Scheduled tasks _MUST_ be functions that return _promises_. This works well with async functions or with ES2017 `ASYNC/AWAIT` functions.
 
 Now, that we have a task to schedule, let's schedule some tasks. The `.schedule` method takes three arguments, the task to call, an array of arguments, and a priority oject to that is associated with the scheduled task. It will return a promise that will resolve or reject once the task has been ran.
 
@@ -127,4 +126,3 @@ const task5 = queue
 ## License
 
 This project is licensed under the MIT License - see the [LICENCE](https://github.com/cmseaton42/task-easy/blob/master/LICENSE) file for details
-
