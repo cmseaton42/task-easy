@@ -100,11 +100,8 @@ describe("Micro Worker", () => {
 
     describe("Public Methods", () => {
         let compare;
-        let arr;
-        let q;
 
         beforeEach(() => {
-            arr = [];
             compare = (obj1, obj2) => {
                 if (obj1.value === obj2.value) return obj1.id < obj2.id;
                 return obj1.value >= obj2.value;
