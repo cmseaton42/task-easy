@@ -1,0 +1,4 @@
+**/*.spec.js
+/coverage
+/assets
+**/__snapshots__
