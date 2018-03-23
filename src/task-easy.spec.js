@@ -1,11 +1,11 @@
-const MicroQueue = require("./index");
+const TaskEasy = require("./index");
 
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 describe("Micro Worker", () => {
     describe("New Instance", () => {
         it("Rejects Improper Constructor Arguments", () => {
-            const fn = (arg, max) => () => new MicroQueue(arg, max);
+            const fn = (arg, max) => () => new TaskEasy(arg, max);
 
             expect(fn()).toThrow();
             expect(fn("hello", 6)).toThrow();
@@ -36,10 +36,10 @@ describe("Micro Worker", () => {
                 });
             }
 
-            q = new MicroQueue(compare);
+            q = new TaskEasy(compare);
             q.tasks = arr;
         });
-
+        
         it("Reorder Method Produces Correct Output", () => {
             q._reorder(0);
             expect(q.tasks).toMatchSnapshot();
@@ -60,7 +60,7 @@ describe("Micro Worker", () => {
                         }, ms);
                 });
 
-            const q = new MicroQueue(compare);
+            const q = new TaskEasy(compare);
             const p1 = q.schedule(delayReturn, [50], { value: 1 });
             const p2 = q.schedule(delayReturn, [60], { value: 1 });
             const p3 = q.schedule(delayReturn, [70], { value: 1 });
@@ -80,7 +80,7 @@ describe("Micro Worker", () => {
                         }, ms);
                 });
 
-            const q = new MicroQueue(compare);
+            const q = new TaskEasy(compare);
             const res = [];
             const p1 = q.schedule(delayReturn, [100], { value: 1, id: 1 }).then(n => res.push(n));
             const p2 = q.schedule(delayReturn, [110], { value: 1, id: 2 }).then(n => res.push(n));
@@ -110,7 +110,7 @@ describe("Micro Worker", () => {
 
         describe("Scheduler", () => {
             it("It Rejects Bad Args", () => {
-                const q = new MicroQueue(compare);
+                const q = new TaskEasy(compare);
                 const fn = (func, args, obj) => () => {
                     q.schedule(func, args, obj);
                 };
@@ -123,7 +123,7 @@ describe("Micro Worker", () => {
             });
 
             it("Throws if too many tasks queued", () => {
-                const q = new MicroQueue(compare, 10);
+                const q = new TaskEasy(compare, 10);
 
                 const fn = () => {
                     for (let i = 0; i < 15; i++) {
