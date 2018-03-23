@@ -8,7 +8,7 @@
 </p>
 </div>
 
-# Task Easy - Promise Queue Made Easy 💯
+# Task Easy - Promise Queue Made Easy ✅
 
 A simple, customizable, and lightweight priority queue for promise based tasks.
 
