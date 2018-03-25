@@ -52,7 +52,7 @@ Now, let's create a function that will receive our priority objects and output a
 ```js
 // This function is passed to the TaskEasy contructor and will be used internally to determine tasks order.
 const prioritize = (obj1, obj2) => {
-    return ob1.priority === obj2.priority
+    return obj1.priority === obj2.priority
         ? obj1.timestamp.getTime() < obj2.timestamp.getTime() // Return true if task 1 is older than task 2
         : obj1.priority > obj2.priority; // return true if task 1 is higher priority than task 2
 };
