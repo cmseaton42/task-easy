@@ -78,7 +78,7 @@ const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 >
 > Scheduled tasks _MUST_ be functions that return _promises_. This works well with async functions or with ES2017 `ASYNC/AWAIT` functions.
 
-Now, that we have a task to schedule, let's schedule some tasks. The `.schedule` method takes three arguments, the task to call, an array of arguments, and a priority oject to that is associated with the scheduled task. It will return a promise that will resolve or reject once the task has been ran.
+Now, that we have a task to schedule, let's schedule some tasks. The `.schedule` method takes three arguments, the task to call, an array of arguments, and a priority object that is associated with the scheduled task. It will return a promise that will resolve or reject once the task has been ran.
 
 ```js
 // .schedule accepts the task signature,
