@@ -5,6 +5,7 @@
   <a href="https://github.com/cmseaton42/task-easy/blob/master/LICENSE"><img src="https://img.shields.io/github/license/cmseaton42/task-easy.svg?style=flat-square" alt="license" /></a>
   <img src="https://img.shields.io/travis/cmseaton42/task-easy.svg?style=flat-square" alt="Travis" />
   <img src="https://img.shields.io/coveralls/github/cmseaton42/task-easy.svg?style=flat-square" alt="Coveralls github" />
+  <a href="https://github.com/cmseaton42/task-easy"><img src="https://img.shields.io/github/stars/cmseaton42/task-easy.svg?&amp;style=social&amp;logo=github&amp;label=Stars" alt="GitHub stars" /></a>
 </p>
 </div>
 
