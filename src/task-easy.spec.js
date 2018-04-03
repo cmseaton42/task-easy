@@ -39,7 +39,7 @@ describe("Micro Worker", () => {
             q = new TaskEasy(compare);
             q.tasks = arr;
         });
-        
+
         it("Reorder Method Produces Correct Output", () => {
             q._reorder(0);
             expect(q.tasks).toMatchSnapshot();
@@ -91,10 +91,25 @@ describe("Micro Worker", () => {
                 .schedule(delayReturn, ["hello"], { value: 0, id: 6 })
                 .then(n => res.push(n))
                 .catch(e => res.push(e));
+            const p7 = q.schedule(delayReturn, [90], { value: 4, id: 5 }).then(n => res.push(n));
+            const p8 = q.schedule(delayReturn, [70], { value: 2, id: 6 }).then(n => res.push(n));
+            const p9 = q.schedule(delayReturn, [105], { value: 1, id: 7 }).then(n => res.push(n));
+            const p10 = q
+                .schedule(delayReturn, [107], {
+                    value: 2,
+                    id: 8
+                })
+                .then(n => res.push(n));
+            const p11 = q
+                .schedule(delayReturn, [80], {
+                    value: 5,
+                    id: 9
+                })
+                .then(n => res.push(n));
 
-            await Promise.all([p1, p2, p3, p4, p5, p6]);
+            await Promise.all([p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11]);
 
-            expect(res).toEqual([100, 130, 120, 110, 140, "Bad Input"]);
+            expect(res).toEqual([100, 80, 90, 130, 120, 70, 107, 110, 140, 105, "Bad Input"]);
         });
     });
 
