@@ -51,12 +51,27 @@ class TaskEasy {
         return new Promise((resolve, reject) => {
             // Push Task to Queue
             if (this.tasks.length === 0) {
-                this.tasks.push({ task, args, priority_obj, resolve, reject });
+                this.tasks.unshift({ task, args, priority_obj, resolve, reject });
+                this._reorder(0);
                 this._next();
             } else {
-                this.tasks.push({ task, args, priority_obj, resolve, reject });
+                this.tasks.unshift({ task, args, priority_obj, resolve, reject });
+                this._reorder(0);
             }
         });
+    }
+
+    /**
+     * Swaps the tasks with the specified indexes
+     *
+     * @param {number} ix
+     * @param {number} iy
+     * @memberof TaskEasy
+     */
+    _swap(ix, iy) {
+        const temp = this.tasks[ix];
+        this.tasks[ix] = this.tasks[iy];
+        this.tasks[iy] = temp;
     }
 
     /**
@@ -80,9 +95,7 @@ class TaskEasy {
             swap = r;
 
         if (swap !== index) {
-            const temp = this.tasks[index];
-            this.tasks[index] = this.tasks[swap];
-            this.tasks[swap] = temp;
+            this._swap(swap, index);
             this._reorder(swap);
         }
     }
@@ -90,6 +103,7 @@ class TaskEasy {
     /**
      * Organized Queue based on Priority
      *
+     * @deprecated
      * @memberof TaskQueue
      */
     _orderQueue() {
@@ -107,10 +121,12 @@ class TaskEasy {
      * @memberof TaskQueue
      */
     _runTask() {
-        this._orderQueue();
+        this._swap(0, this.tasks.length - 1);
 
-        const job = this.tasks.shift();
+        const job = this.tasks.pop();
         const { task, args, resolve, reject } = job;
+
+        this._reorder(0);
 
         this.taskRunning = true;
 
