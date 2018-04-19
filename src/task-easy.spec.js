@@ -45,11 +45,6 @@ describe("Micro Worker", () => {
             expect(q.tasks).toMatchSnapshot();
         });
 
-        it("Build Heap Works Correctly", () => {
-            q._orderQueue();
-            expect(q.tasks).toMatchSnapshot();
-        });
-
         it("Runs Tasks on Push", async () => {
             const delayReturn = ms =>
                 new Promise((resolve, reject) => {
