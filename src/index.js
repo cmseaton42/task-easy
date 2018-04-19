@@ -12,15 +12,15 @@ class TaskEasy {
 
         if (typeof compare_func !== "function")
             throw new Error(
-                `Micro Comparison Function must be of Type <function> instead got ${typeof compare_func}`
+                `Task Easy Comparison Function must be of Type <function> instead got ${typeof compare_func}`
             );
 
         if (typeof max_queue_size !== "number")
             throw new Error(
-                `Micro Max Queue Size must be of Type <Number> instead got ${typeof number}`
+                `Task Easy Max Queue Size must be of Type <Number> instead got ${typeof number}`
             );
 
-        if (max_queue_size <= 0) throw new Error("Micro Max Queue Size must be greater than 0");
+        if (max_queue_size <= 0) throw new Error("Task Easy Max Queue Size must be greater than 0");
 
         this.compare = compare_func;
         this.max = max_queue_size;
@@ -97,21 +97,6 @@ class TaskEasy {
         if (swap !== index) {
             this._swap(swap, index);
             this._reorder(swap);
-        }
-    }
-
-    /**
-     * Organized Queue based on Priority
-     *
-     * @deprecated
-     * @memberof TaskQueue
-     */
-    _orderQueue() {
-        const size = this.tasks.length;
-        const start = Math.trunc((size - 2) / 2);
-
-        for (let i = start; i >= 0; i--) {
-            this._reorder(i);
         }
     }
 
