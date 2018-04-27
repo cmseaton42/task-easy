@@ -4,8 +4,7 @@
     "description": "A simple, customizable, and lightweight priority queue for promise based tasks.",
     "main": "./src/index.js",
     "scripts": {
-        "test":
-            "npm run lint && jest && npm run test:coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+        "test": "npm run lint && jest && npm run test:coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
         "test:local": "npm run lint && jest && npm run test:coverage",
         "test:watch": "jest --watch",
         "test:coverage": "jest --coverage",
@@ -15,23 +14,26 @@
         "lint:fix": "npm run lint -- --fix"
     },
     "keywords": [
-      "queue",
-      "task",
-      "worker",
-      "job",
-      "in-memory",
-      "priority",
-      "manager",
-      "utility",
-      "promise",
-      "Async"
+        "queue",
+        "task",
+        "worker",
+        "job",
+        "in-memory",
+        "priority",
+        "manager",
+        "utility",
+        "promise",
+        "Async"
     ],
     "author": "Canaan Seaton",
     "license": "MIT",
     "devDependencies": {
         "coveralls": "^3.0.0",
         "eslint": "^4.19.1",
-        "eslint-plugin-jest": "^21.15.0",
+        "eslint-plugin-jest": "^21.15.1",
         "jest": "^22.4.3"
+    },
+    "dependencies": {
+        "npm": "^6.0.0"
     }
 }
