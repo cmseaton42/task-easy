@@ -1,6 +1,6 @@
 {
     "name": "task-easy",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "description": "A simple, customizable, and lightweight priority queue for promise based tasks.",
     "main": "./src/index.js",
     "types": "./src/index.d.ts",
