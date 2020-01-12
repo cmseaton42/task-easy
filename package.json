@@ -3,6 +3,7 @@
     "version": "0.2.0",
     "description": "A simple, customizable, and lightweight priority queue for promise based tasks.",
     "main": "./src/index.js",
+    "types": "./src/index.d.ts",
     "scripts": {
         "test": "npm run lint && jest && npm run test:coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
         "test:local": "npm run lint && jest && npm run test:coverage",
