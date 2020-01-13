@@ -1,8 +1,9 @@
 {
     "name": "task-easy",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "description": "A simple, customizable, and lightweight priority queue for promise based tasks.",
     "main": "./src/index.js",
+    "types": "./src/index.d.ts",
     "scripts": {
         "test": "npm run lint && jest && npm run test:coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
         "test:local": "npm run lint && jest && npm run test:coverage",
@@ -28,12 +29,9 @@
     "author": "Canaan Seaton",
     "license": "MIT",
     "devDependencies": {
-        "coveralls": "^3.0.0",
-        "eslint": "^4.19.1",
-        "eslint-plugin-jest": "^21.15.1",
-        "jest": "^22.4.3"
-    },
-    "dependencies": {
-        "npm": "^6.0.0"
+        "coveralls": "^3.0.9",
+        "eslint": "^6.8.0",
+        "eslint-plugin-jest": "^23.4.0",
+        "jest": "^24.9.0"
     }
 }

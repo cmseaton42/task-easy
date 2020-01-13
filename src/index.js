@@ -17,7 +17,7 @@ class TaskEasy {
 
         if (typeof max_queue_size !== "number")
             throw new Error(
-                `Task Easy Max Queue Size must be of Type <Number> instead got ${typeof number}`
+                `Task Easy Max Queue Size must be of Type <Number> instead got ${typeof max_queue_size}`
             );
 
         if (max_queue_size <= 0) throw new Error("Task Easy Max Queue Size must be greater than 0");
