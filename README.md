@@ -13,6 +13,10 @@
 
 A simple, customizable, and lightweight priority queue for promise based tasks.
 
+> Now with types!!! Big thanks to [Emiliano Heyns](https://github.com/retorquere) :beers:
+>
+> -   See below example for typescript version
+
 ## Getting Started
 
 Install with npm
@@ -115,14 +119,77 @@ const task5 = queue
 >
 > In the above example, `task1` resolved first as it once put onto the queue first and was immediately called as it was the only task on the queue at that time.
 
+## Now with _Typescript_
+
+```typescript
+import TaskEasy from "task-easy";
+
+// Define interface for priority
+//  objects to be used in the
+//  TaskEasy instance
+interface IPriority {
+    priority: number;
+    timestamp: Date;
+}
+
+// Define delay function type
+// -> Must extend  Task<T>: (...args) => Promise<T>
+type delayFn = (ms: number) => Promise<undefined>;
+
+// Define delay function of type 'delayFn' defined above
+const delay: delayFn = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+// Define priority function
+// -> Must extend (obj1: T, obj2: T) =>
+const prioritize = (obj1: IPriority, obj2: IPriority) => {
+    return obj1.priority === obj2.priority
+        ? obj1.timestamp.getTime() < obj2.timestamp.getTime() // Return true if task 1 is older than task 2
+        : obj1.priority > obj2.priority; // return true if task 1 is higher priority than task 2
+};
+
+// Initialize new queue
+const queue = new TaskEasy(prioritize); // equivalent of TaskEasy<IPriority>(prioritize) via type inference
+
+// .schedule accepts the task signature,
+// an array or arguments, and a priority object
+// -> with type inference
+const task1 = queue
+    .schedule(delay, [100], { priority: 1, timestamp: new Date() })
+    .then(() => console.log("Task 1 ran..."));
+
+const task2 = queue
+    .schedule(delay, [100], { priority: 1, timestamp: new Date() })
+    .then(() => console.log("Task 2 ran..."));
+
+// Definitely typed
+const task3 = queue
+    .schedule<undefined, delayFn>(delay, [100], { priority: 2, timestamp: new Date() })
+    .then(() => console.log("Task 3 ran..."));
+
+const task4 = queue
+    .schedule<undefined, delayFn>(delay, [100], { priority: 1, timestamp: new Date() })
+    .then(() => console.log("Task 4 ran..."));
+
+const task5 = queue
+    .schedule<undefined, delayFn>(delay, [100], { priority: 3, timestamp: new Date() })
+    .then(() => console.log("Task 5 ran..."));
+
+// OUTPUT
+// Task 1 ran...
+// Task 5 ran...
+// Task 3 ran...
+// Task 2 ran...
+// Task 4 ran...
+```
+
 ## Built With
 
-*   [NodeJS](https://nodejs.org/en/) - The Engine
-*   [javascript - ES2017](https://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf) - The Language
+-   [NodeJS](https://nodejs.org/en/) - The Engine
+-   [javascript - ES2017](https://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf) - The Language
 
 ## Contributers
 
-*   **Canaan Seaton** - _Owner_ - [GitHub Profile](https://github.com/cmseaton42) - [Personal Website](http://www.canaanseaton.com/)
+-   **Canaan Seaton** - _Owner_ - [GitHub Profile](https://github.com/cmseaton42) - [Personal Website](http://www.canaanseaton.com/)
 
 ## License
 
