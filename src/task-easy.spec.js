@@ -1,4 +1,4 @@
-const TaskEasy = require("./index");
+const { TaskEasy } = require("./index");
 
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 

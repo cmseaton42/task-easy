@@ -1,8 +1,5 @@
-// Per Module-class.d.ts documentation
-export = TaskEasy;
-
 // Task Easy Class
-declare class TaskEasy<C> {
+export declare class TaskEasy<C> {
     constructor(compare_func: (ob1: C, obj2: C) => boolean, max_queue_size?: number);
     schedule<P, T extends TaskEasy.Task<P>>(task: T, args: TaskEasy.Arguments<T>, priority_obj: C): Promise<P>;
 }

@@ -66,7 +66,7 @@ const prioritize = (obj1, obj2) => {
 Now, we can initialize a new _TaskEasy_ instance.
 
 ```js
-const TaskEasy = require("task-easy");
+const { TaskEasy } = require("task-easy");
 
 const max_tasks = 200; // How many tasks will we allow to be queued at a time (defaults to 100)
 const queue = new TaskEasy(prioritize, max_tasks);
@@ -122,7 +122,7 @@ const task5 = queue
 ## Now with _Typescript_
 
 ```typescript
-import TaskEasy from "task-easy";
+import { TaskEasy } from "task-easy";
 
 // Define interface for priority
 //  objects to be used in the

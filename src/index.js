@@ -16,9 +16,7 @@ class TaskEasy {
             );
 
         if (typeof max_queue_size !== "number")
-            throw new Error(
-                `Task Easy Max Queue Size must be of Type <Number> instead got ${typeof max_queue_size}`
-            );
+            throw new Error(`Task Easy Max Queue Size must be of Type <Number> instead got ${typeof max_queue_size}`);
 
         if (max_queue_size <= 0) throw new Error("Task Easy Max Queue Size must be greater than 0");
 
@@ -38,14 +36,10 @@ class TaskEasy {
     schedule(task, args, priority_obj) {
         if (typeof task !== "function")
             throw new Error(`Scheduler Task must be of Type <function> instead got ${typeof task}`);
-        if (!Array.isArray(args))
-            throw new Error(`Scheduler args must be of Type <Array> instead got ${typeof args}`);
+        if (!Array.isArray(args)) throw new Error(`Scheduler args must be of Type <Array> instead got ${typeof args}`);
         if (typeof priority_obj !== "object")
-            throw new Error(
-                `Scheduler Task must be of Type <Object> instead got ${typeof priority_obj}`
-            );
-        if (this.tasks.length >= this.max)
-            throw new Error(`Micro Queue is already full at size of ${this.max}!!!`);
+            throw new Error(`Scheduler Task must be of Type <Object> instead got ${typeof priority_obj}`);
+        if (this.tasks.length >= this.max) throw new Error(`Micro Queue is already full at size of ${this.max}!!!`);
 
         // return Promise to Caller
         return new Promise((resolve, reject) => {
@@ -89,10 +83,8 @@ class TaskEasy {
 
         let swap = index;
 
-        if (l < size && compare(this.tasks[l].priority_obj, this.tasks[swap].priority_obj))
-            swap = l;
-        if (r < size && compare(this.tasks[r].priority_obj, this.tasks[swap].priority_obj))
-            swap = r;
+        if (l < size && compare(this.tasks[l].priority_obj, this.tasks[swap].priority_obj)) swap = l;
+        if (r < size && compare(this.tasks[r].priority_obj, this.tasks[swap].priority_obj)) swap = r;
 
         if (swap !== index) {
             this._swap(swap, index);
@@ -140,4 +132,4 @@ class TaskEasy {
     }
 }
 
-module.exports = TaskEasy;
+module.exports = { TaskEasy };
