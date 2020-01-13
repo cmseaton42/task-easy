@@ -1,6 +1,6 @@
 {
     "name": "task-easy",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "A simple, customizable, and lightweight priority queue for promise based tasks.",
     "main": "./src/index.js",
     "types": "./src/index.d.ts",
@@ -26,6 +26,10 @@
         "promise",
         "Async"
     ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/cmseaton42/task-easy"
+    },
     "author": "Canaan Seaton",
     "license": "MIT",
     "devDependencies": {
