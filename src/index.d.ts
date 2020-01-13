@@ -1,12 +1,16 @@
-declare type Task = {
-    task: (...args: any[]) => Promise<any>;
-    args: any[];
-    priority_obj: object;
-    resolve: (v: any) => void;
-    reject: (err: any) => void;
-};
+// Per Module-class.d.ts documentation
+export = TaskEasy;
 
-declare class TaskEasy {
-    constructor(compare_func: any, max_queue_size?: number);
-    schedule(task: any, args: any, priority_obj: any): Promise<unknown>;
+// Task Easy Class
+declare class TaskEasy<C> {
+    constructor(compare_func: (ob1: C, obj2: C) => boolean, max_queue_size?: number);
+    schedule<P, T extends TaskEasy.Task<P>>(task: T, args: TaskEasy.Arguments<T>, priority_obj: C): Promise<P>;
+}
+
+declare namespace TaskEasy {
+    // Extract argument types from passed function type
+    export type Arguments<T> = [T] extends [(...args: infer U) => any] ? U : [T] extends [void] ? [] : [T];
+
+    // Generic task type, must return promise
+    export type Task<T> = (...args: any[]) => Promise<T>;
 }
